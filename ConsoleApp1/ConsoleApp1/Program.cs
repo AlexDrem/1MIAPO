@@ -49,6 +49,20 @@ public class EmployeeManagementSystem
         Console.WriteLine($"Всего сотрудников: {employees.Count}");
     }
 
+    public void UpdateSalary(string name, double newSalary)
+    {
+        Employee employeeToUpdate = employees.Find(emp => emp.Name == name);
+        if (employeeToUpdate != null)
+        {
+            employeeToUpdate.Salary = newSalary;
+            Console.WriteLine($"Зарплата сотрудника {name} успешно изменена на {newSalary}.");
+        }
+        else
+        {
+            Console.WriteLine($"Сотрудник {name} не найден.");
+        }
+    }
+
     public void UpdateAge(string name, int newAge)
     {
         Employee employeeToUpdate = employees.Find(emp => emp.Name == name);
@@ -85,9 +99,10 @@ class Program
             Console.WriteLine("1. Добавить сотрудника");
             Console.WriteLine("2. Удалить сотрудника");
             Console.WriteLine("3. Посмотреть количество сотрудников");
-            Console.WriteLine("4. Изменить возраст сотрудника");
-            Console.WriteLine("5. Вывести всех сотрудников");
-            Console.WriteLine("6. Выйти из программы");
+            Console.WriteLine("4. Изменить зарплату сотрудника");
+            Console.WriteLine("5. Изменить возраст сотрудника");
+            Console.WriteLine("6. Вывести всех сотрудников");
+            Console.WriteLine("7. Выйти из программы");
 
             string choice = Console.ReadLine();
 
@@ -111,16 +126,23 @@ class Program
                     ems.ViewEmployeeCount();
                     break;
                 case "4":
-                    Console.Write("Введите имя сотрудника, возраст которого нужно изменить: ");
-                    string nameToUpdate = Console.ReadLine();
-                    Console.Write("Введите новый возраст: ");
-                    int newAge = int.Parse(Console.ReadLine());
-                    ems.UpdateAge(nameToUpdate, newAge);
+                    Console.Write("Введите имя сотрудника, зарплату которого нужно изменить: ");
+                    string nameToUpdateSalary = Console.ReadLine();
+                    Console.Write("Введите новую зарплату: ");
+                    double newSalary = double.Parse(Console.ReadLine());
+                    ems.UpdateSalary(nameToUpdateSalary, newSalary);
                     break;
                 case "5":
-                    ems.ViewAllEmployees();
+                    Console.Write("Введите имя сотрудника, возраст которого нужно изменить: ");
+                    string nameToUpdateAge = Console.ReadLine();
+                    Console.Write("Введите новый возраст: ");
+                    int newAge = int.Parse(Console.ReadLine());
+                    ems.UpdateAge(nameToUpdateAge, newAge);
                     break;
                 case "6":
+                    ems.ViewAllEmployees();
+                    break;
+                case "7":
                     Console.WriteLine("Выход из программы...");
                     return;
                 default:
