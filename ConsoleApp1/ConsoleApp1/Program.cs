@@ -49,13 +49,13 @@ public class EmployeeManagementSystem
         Console.WriteLine($"Всего сотрудников: {employees.Count}");
     }
 
-    public void UpdateSalary(string name, double newSalary)
+    public void UpdateAge(string name, int newAge)
     {
         Employee employeeToUpdate = employees.Find(emp => emp.Name == name);
         if (employeeToUpdate != null)
         {
-            employeeToUpdate.Salary = newSalary;
-            Console.WriteLine($"Зарплата сотрудника {name} успешно изменена на {newSalary}.");
+            employeeToUpdate.Age = newAge;
+            Console.WriteLine($"Возраст сотрудника {name} успешно изменен на {newAge}.");
         }
         else
         {
@@ -85,7 +85,7 @@ class Program
             Console.WriteLine("1. Добавить сотрудника");
             Console.WriteLine("2. Удалить сотрудника");
             Console.WriteLine("3. Посмотреть количество сотрудников");
-            Console.WriteLine("4. Изменить зарплату сотрудника");
+            Console.WriteLine("4. Изменить возраст сотрудника");
             Console.WriteLine("5. Вывести всех сотрудников");
             Console.WriteLine("6. Выйти из программы");
 
@@ -111,11 +111,11 @@ class Program
                     ems.ViewEmployeeCount();
                     break;
                 case "4":
-                    Console.Write("Введите имя сотрудника, зарплату которого нужно изменить: ");
+                    Console.Write("Введите имя сотрудника, возраст которого нужно изменить: ");
                     string nameToUpdate = Console.ReadLine();
-                    Console.Write("Введите новую зарплату: ");
-                    double newSalary = double.Parse(Console.ReadLine());
-                    ems.UpdateSalary(nameToUpdate, newSalary);
+                    Console.Write("Введите новый возраст: ");
+                    int newAge = int.Parse(Console.ReadLine());
+                    ems.UpdateAge(nameToUpdate, newAge);
                     break;
                 case "5":
                     ems.ViewAllEmployees();
